@@ -19,12 +19,12 @@
                   <label for="exampleInputEmail1">Level</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Student's Level" v-model="level">
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <label for="exampleInputFile">Select Avatar</label>
                   <input type="file" id="exampleInputFile">
 
                   <p class="help-block"></p>
-                </div>
+                </div>-->
               </div>
               <!-- /.box-body -->
 
@@ -46,8 +46,7 @@ export default {
       username: this.$store.state.selectedStudent.name,
       level: this.$store.state.selectedStudent.level,
       course: this.$store.state.selectedStudent.course,
-      //data_url: "http://localhost:3003" || process.env.PORT
-      data_url: ''
+      data_url: process.env.NODE_ENV === 'production' ? "" : "http://localhost:3003"
     }
   },
   computed: {
@@ -90,7 +89,6 @@ export default {
         preConfirm: () => {
           return new Promise((resv, rej) => {
             this.editUser()
-            resv()
           })
         }
       }).then(() => {

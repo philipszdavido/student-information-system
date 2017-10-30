@@ -100,8 +100,7 @@ export default {
     var route = this.$route;
     return {
       studen: route.params.id,
-      //data_url: "http://localhost:3003"
-      data_url: ''
+      data_url: process.env.NODE_ENV === 'production' ? "" : "http://localhost:3003"
     }
   },
   computed: {
@@ -130,7 +129,6 @@ export default {
               this.$store.dispatch('delete_student', this.$store.state.selectedStudent)
               this.$swal('Done','','success')
             })
-            resv()
           })
         }
       }).then(() => {

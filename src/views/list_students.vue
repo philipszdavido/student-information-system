@@ -5,7 +5,7 @@
                   <h3 class="box-title">Latest Members</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">{{students.length}} New Members</span>
+                    <span class="label label-danger">{{students.length}} New Member{{students.length > 1 ? 's' : ''}}</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -37,15 +37,6 @@ import axios from 'axios'
 
 export default {
   name: 'listStudents',
-  vuex: {
-   getters: {
-     students: state => state.students
-   },
-   actions: {
-     add_student,
-     add_students
-   }
-  },
   computed: {
     students() {
       return this.$store.state.students
@@ -56,9 +47,7 @@ export default {
   },
   data: function() {
     return {
-      tudents : this.$store.state.students,
-      data_url: ''
-      //data_url: "http://localhost:3003"
+      data_url: process.env.NODE_ENV === 'production' ? "" : "http://localhost:3003"
     }
   },
   methods: {

@@ -49,8 +49,7 @@ export default {
       level: '',
       course: '',
       image: null,
-      data_url: ''
-      //data_url: "http://localhost:3003"
+      data_url: process.env.NODE_ENV === 'production' ? "" : "http://localhost:3003"
     }
   },
   methods: {
@@ -75,11 +74,11 @@ export default {
               this.$store.dispatch('add_student', {name: this.username, course: this.course, level: this.level})
               this.$swal('Done','','success')
             })
-            resv()
           })
         }
-      }).then(() => {
-      }, (dismiss) => {
+      }).then(
+        () => {},
+       (dismiss) => {
         if(dismiss == 'cancel')
           this.$swal('Cancelled','','error')
       })
